@@ -1,5 +1,5 @@
 # Daten bleiben lokal (Repo ist öffentlich)
-data/
+/data/
 *.parquet
 *.db
 *.db-wal
