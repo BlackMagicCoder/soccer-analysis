@@ -1,0 +1,21 @@
+# Daten bleiben lokal (Repo ist öffentlich)
+data/
+*.parquet
+*.db
+*.db-wal
+*.db-shm
+
+# Arbeitsverzeichnisse der Agenten
+.worktrees/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
+# Web
+node_modules/
+web/dist/
+
+.idea/
