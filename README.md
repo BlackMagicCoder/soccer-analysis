@@ -22,6 +22,30 @@ Alle angezeigten Werte stammen aus einer Datei: `Match_statistics_enriched.parqu
 
 Einzelheiten zur Webseite stehen in [web/README.md](web/README.md).
 
+### Screenshots
+
+Stand 16.11.2026, Datenversion 3.
+
+**Übersicht** – Herkunft der Daten und Steckbrief je Quelle
+
+![Übersicht mit Herkunftstabelle und Quellensteckbriefen](docs/img/uebersicht.png)
+
+**Spieldaten (Understat)** – Kennzahlen, Verteilungen und Filter
+
+![Seite Spieldaten mit Herkunftshinweis, Kennzahlen und Diagrammen](docs/img/spieldaten.png)
+
+**Stadien (Wikidata)** – Karte und gemeinsam genutzte Stadien
+
+![Seite Stadien mit Karte der Stadionstandorte](docs/img/stadien.png)
+
+**Wetter (Open-Meteo)** – Abfrageparameter und Beispiel einer Rohantwort
+
+![Seite Wetter mit Abfrageparametern und Rohantwort](docs/img/wetter.png)
+
+**Verknüpfte Daten** – Datenmodell und berechnete Felder
+
+![Seite Verknüpfte Daten mit Datenmodell und Tabelle der berechneten Felder](docs/img/verknuepft.png)
+
 ## Notebooks
 
 `Fußball_Analyse.ipynb` bleibt unverändert als Referenz erhalten und beantwortet die zwölf Fragen auf Basis der Datei. `Fußball_Analyse_aktuell.ipynb` ist dieselbe Analyse, am 16.11.2026 mit `data/soccer.db` neu ausgeführt. Die Textausgaben sind bis auf F8 identisch; dort gehen 28 Spiele mehr ein (Klimaschock p = 0,69 statt 0,64, Aussage unverändert).
