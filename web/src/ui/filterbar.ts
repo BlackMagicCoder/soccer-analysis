@@ -7,7 +7,7 @@ import {
   subscribe,
 } from "../state/filters";
 import { seasonLabel } from "./format";
-export function filterbar(meta: MetaResponse) {
+export function filterbar(meta: MetaResponse, options: {ghost?: boolean} = {}) {
   const bar = document.createElement("div");
   bar.className = "filterbar";
   bar.setAttribute("aria-label", "Daten filtern");
@@ -90,7 +90,9 @@ export function filterbar(meta: MetaResponse) {
   count.className = "filter-count";
   count.setAttribute("aria-live", "polite");
   count.textContent = "Spiele werden geladen …";
-  bar.append(leagues, seasons, ghosts, reset, count);
+  bar.append(leagues, seasons);
+  if (options.ghost !== false) bar.append(ghosts);
+  bar.append(reset, count);
   const update = (f: Filter) => {
     buttons.forEach((b, id) =>
       b.setAttribute("aria-pressed", String(f.leagues.includes(id))),

@@ -20,7 +20,8 @@ export interface Dataset {
 export function decodeMatches(r: MatchesResponse): Dataset {
   const columns = {} as Dataset["columns"];
   for (const k of integerColumns) columns[k] = Int32Array.from(r.columns[k]);
-  for (const k of flagColumns) columns[k] = Uint8Array.from(r.columns[k]);
+  // 255 marks unknown flags, preserving the difference between unknown and false.
+  for (const k of flagColumns) columns[k] = Uint8Array.from(r.columns[k], v => v === null ? 255 : v);
   for (const k of numericColumns)
     columns[k] = Float64Array.from(r.columns[k], (v) => (v === null ? NaN : v));
   columns.date = Float64Array.from(r.columns.date, (d) => Date.parse(d + "Z"));
@@ -45,6 +46,7 @@ export function selectRows(d: Dataset, f: Filter): Uint32Array {
     const c = d.columns;
     if (
       f.leagues.includes(c.league[i]) &&
+      c.date[i] < Date.UTC(2026, 5, 1) &&
       c.season[i] >= f.seasonFrom &&
       c.season[i] <= f.seasonTo &&
       (f.ghost === "include" || c.ghost[i] === (f.ghost === "only" ? 1 : 0))

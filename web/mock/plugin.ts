@@ -1,3 +1,4 @@
+import { understatColumnKeys } from "../src/data/sources";
 import type { Plugin } from "vite";
 import {
   integerColumns,
@@ -120,6 +121,9 @@ export function mockApi(): Plugin {
         if (!url.pathname.startsWith("/api/")) return next();
         let body: unknown;
         if (url.pathname === "/api/meta") body = meta;
+        else if (url.pathname === "/api/source/understat") body = {data_version:1,n:matches.n,teams:matches.teams,source:{name:"Understat",url:"https://understat.com/",content:"Spielstatistiken",retrieval:"Mockdaten aus dem lokalen Spielbestand",license:"Nur synthetische Entwicklungsdaten"},columns:Object.fromEntries(understatColumnKeys.map(k=>[k,matches.columns[k]]))};
+        else if (url.pathname === "/api/source/wikidata") body = {data_version:1,n_teams:stadiums.stadiums.length,n_venues:stadiums.stadiums.length,source:{name:"Wikidata",url:"https://www.wikidata.org/",content:"Stadion-Stammdaten",retrieval:"Mockdaten aus dem lokalen Stadionbestand",license:"CC0 (Quelle); Mockdaten synthetisch"},stadiums:stadiums.stadiums.map(({league,...s},i)=>({...s,wikidata:`Q${1000+i}`}))};
+        else if (url.pathname === "/api/source/open-meteo") body = {data_version:1,n:matches.n,source:{name:"Open-Meteo",url:"https://open-meteo.com/",content:"Wetterabfragen",retrieval:"Mockdaten aus vorhandenen Wetterwerten",license:"CC BY 4.0 (Quelle); Mockdaten synthetisch"},query:{endpoint:"https://archive-api.open-meteo.com/v1/archive",model:"best_match",variables:{w_temp:"temperature_2m",w_wind:"wind_speed_10m",w_precip_2h:"precipitation: Summe aus zwei Stunden"},timezone:"UTC",delay_days:5},columns:{time:matches.columns.date.map(d=>d.slice(0,13)+":00"),lat:matches.columns.home_team.map(i=>stadiums.stadiums[i].lat),lon:matches.columns.home_team.map(i=>stadiums.stadiums[i].lon),w_temp:matches.columns.w_temp,w_wind:matches.columns.w_wind,w_precip_2h:matches.columns.w_precip_2h},example:{latitude:52.5,longitude:13.4,timezone:"GMT",hourly_units:{time:"iso8601",temperature_2m:"?C"},hourly:{time:["2026-01-01T15:00"],temperature_2m:[4.2]},truncated:true}};
         else if (url.pathname === "/api/matches") body = matches;
         else if (url.pathname === "/api/stadiums") body = stadiums;
         else if (url.pathname === "/api/models") {

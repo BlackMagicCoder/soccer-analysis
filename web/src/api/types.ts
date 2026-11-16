@@ -13,6 +13,8 @@ export interface MetaResponse {
   n_stadiums: number;
   date_min: string;
   date_max: string;
+  analysis_end?: string;
+  latest_season?: number;
   seasons: number[];
   leagues: { id: number; key: string; name: string }[];
   ghost_period: [string, string];
@@ -52,7 +54,7 @@ export interface MatchesResponse {
   data_version: number;
   n: number;
   teams: string[];
-  columns: Record<IntegerColumn | FlagColumn, number[]> &
+  columns: Record<IntegerColumn, number[]> & Record<FlagColumn, (number | null)[]> &
     Record<NumericColumn, (number | null)[]> & { date: string[] };
 }
 export interface StadiumsResponse {
@@ -94,3 +96,9 @@ export interface ModelsResponse {
   >;
   errors: Record<string, string>;
 }
+
+export interface SourceInfo { name: string; url: string; content: string; retrieval: string; license: string }
+export type UnderstatNumeric = IntegerColumn | "home_xg" | "away_xg" | "home_xpts" | "away_xpts" | "home_ppda" | "away_ppda" | "home_deep" | "away_deep";
+export interface UnderstatResponse { data_version: number; n: number; source: SourceInfo; teams: string[]; columns: Record<UnderstatNumeric, (number | null)[]> & {date: string[]} }
+export interface WikidataResponse { data_version: number; n_teams: number; n_venues: number; source: SourceInfo; stadiums: {team: string; venue: string; city: string; lat: number | null; lon: number | null; wikidata: string | null}[] }
+export interface OpenMeteoResponse { data_version: number; n: number; source: SourceInfo; query: {endpoint: string; model: string; variables: {w_temp: string; w_wind: string; w_precip_2h: string}; timezone: string; delay_days: number}; columns: {time: string[]; lat: (number|null)[]; lon: (number|null)[]; w_temp: (number|null)[]; w_wind: (number|null)[]; w_precip_2h: (number|null)[]}; example: {latitude: number; longitude: number; timezone: string; hourly_units: Record<string, unknown>; hourly: Record<string, unknown[]>; truncated: true} | null }

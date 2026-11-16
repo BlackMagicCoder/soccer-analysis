@@ -1,2 +1,2 @@
 import { mountPage } from "../ui/layout";
-void mountPage("zeitverlauf");
+void mountPage("fragen");

@@ -58,6 +58,16 @@ describe("dataset", () => {
     expect([...selectRows(d, { ...f, ghost: "exclude" })]).toEqual([0, 3]);
     expect([...selectRows(d, { ...f, ghost: "only" })]).toEqual([1, 2]);
   });
+  it("preserves unknown flags and excludes them from explicit true/false selections", () => {
+    const d = decodeMatches({ ...response, columns: { ...columns, ghost: [null, 1, 1, 0], is_derby: [null, 0, 1, 0] } });
+    expect(d.columns.is_derby[0]).toBe(255);
+    expect([...selectRows(d, { ...f, ghost: "exclude" })]).toEqual([3]);
+    expect([...selectRows(d, f)]).toEqual([0, 1, 2, 3]);
+  });
+  it("includes the cutoff day and excludes later matches", () => {
+    const d = decodeMatches({ ...response, columns: { ...columns, date: ["2026-05-31T23:59", "2026-06-01T00:00", "2026-11-01T15:00", "2026-05-30T15:00"] } });
+    expect([...selectRows(d, f)]).toEqual([0, 3]);
+  });
   it("memoises by dataset, version and stable filter", () => {
     const d = decodeMatches(response);
     const rows = selectRows(d, f);

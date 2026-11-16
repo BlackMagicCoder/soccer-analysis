@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
+  initializeFilters, setFilter, getFilter,
   defaults,
   parseFilter,
   serializeFilter,
@@ -46,4 +47,20 @@ describe("filters", () => {
     );
     expect(filterKey(f)).toBe(filterKey({ ...f, leagues: [1, 3] }));
   });
+});
+
+it("preserves the ignored ghost URL parameter on source pages", () => {
+ const loc={pathname:"/spieldaten.html",search:"?geister=nur&custom=keep",hash:""};
+ vi.stubGlobal("location",loc);
+ vi.stubGlobal("history",{replaceState:(_a:unknown,_b:unknown,url:string)=>{loc.search=new URL(url,"http://localhost").search;}});
+ try {
+  initializeFilters(m,{ghost:false});
+  expect(getFilter().ghost).toBe("include");
+  setFilter({leagues:[1],ghost:"exclude"});
+  expect(new URLSearchParams(loc.search).get("geister")).toBe("nur");
+  expect(new URLSearchParams(loc.search).get("custom")).toBe("keep");
+  expect(getFilter().ghost).toBe("include");
+  setFilter(defaults(m));
+  expect(new URLSearchParams(loc.search).get("geister")).toBe("nur");
+ } finally { vi.unstubAllGlobals(); }
 });

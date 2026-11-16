@@ -59,15 +59,29 @@ export const toModelsQuery = (f: Filter) =>
   }).toString();
 let meta: MetaResponse;
 let current: Filter;
+let useGhost = true;
+function writeFilters() {
+  const query = new URLSearchParams(serializeFilter(current, meta));
+  if (!useGhost) query.delete("geister");
+  writeQuery(query.toString(), useGhost ? FILTER_KEYS : FILTER_KEYS.filter(k => k !== "geister"));
+}
 const listeners = new Set<(f: Filter) => void>();
-export function initializeFilters(m: MetaResponse) {
+const FILTER_KEYS = ["l", "von", "bis", "geister"];
+/** Writes the filter into the URL while keeping other parameters (e.g. the cross-filter selection). */
+export function writeQuery(own: string, ownKeys: string[]) {
+  const next = new URLSearchParams(own.replace(/^\?/, ""));
+  new URLSearchParams(location.search).forEach((v, k) => {
+    if (!ownKeys.includes(k) && !next.has(k)) next.set(k, v);
+  });
+  const q = next.toString().replace(/%2C/g, ",").replace(/%7C/g, "|");
+  history.replaceState(null, "", location.pathname + (q ? "?" + q : "") + location.hash);
+}
+export function initializeFilters(m: MetaResponse, options: {ghost?: boolean} = {}) {
   meta = m;
+  useGhost = options.ghost !== false;
   current = parseFilter(location.search, m);
-  history.replaceState(
-    null,
-    "",
-    location.pathname + serializeFilter(current, m) + location.hash,
-  );
+  if (!useGhost) current.ghost = "include";
+  writeFilters();
 }
 export function getFilter(): Filter {
   return { ...current, leagues: [...current.leagues] };
@@ -76,11 +90,8 @@ export function setFilter(patch: Partial<Filter>) {
   const next = { ...current, ...patch };
   if (!next.leagues.length) next.leagues = defaults(meta).leagues;
   current = parseFilter(serializeFilter(next, meta), meta);
-  history.replaceState(
-    null,
-    "",
-    location.pathname + serializeFilter(current, meta) + location.hash,
-  );
+  if (!useGhost) current.ghost = "include";
+  writeFilters();
   listeners.forEach((l) => l(getFilter()));
 }
 export function subscribe(listener: (f: Filter) => void) {
@@ -91,6 +102,7 @@ if (typeof window !== "undefined")
   window.addEventListener("popstate", () => {
     if (meta) {
       current = parseFilter(location.search, meta);
+      if (!useGhost) current.ghost = "include";
       listeners.forEach((l) => l(getFilter()));
     }
   });

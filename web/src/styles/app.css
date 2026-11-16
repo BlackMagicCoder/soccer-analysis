@@ -1,0 +1,500 @@
+@import "tailwindcss";
+
+/*
+ * Retro-BI: ein Analyse-Desktop um 2010. Dunkles Rasengrün für Menüleiste und Daten,
+ * Anzeigetafel-Gelb nur für Auswahl, kantige Kacheln mit Titelleisten auf gepunkteter Arbeitsfläche.
+ */
+@theme {
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --color-pitch-950: #10301f;
+  --color-pitch-900: #173f2c;
+  --color-pitch-700: #1d5a3c;
+  --color-pitch-600: #23704a;
+  --color-pitch-100: #e1ece4;
+  --color-amber-500: #d99a1c;
+  --color-amber-100: #f8ecd0;
+  --color-canvas: #e6e9e1;
+  --color-tile: #fcfcf8;
+  --color-tile-head: #eef1e9;
+  --color-rule: #c5ccbf;
+  --color-rule-strong: #9aa494;
+  --color-ink: #1c231f;
+  --color-muted: #5a6560;
+}
+:root {
+  color-scheme: light;
+  --accent: var(--color-pitch-600);
+  --league-1: #3d5f95;
+  --league-2: #2f7d57;
+  --league-3: #b5473f;
+  --league-4: #c18a2c;
+  --league-5: #6b4f8a;
+}
+
+@layer base {
+  html,
+  body {
+    @apply h-full;
+  }
+  body {
+    @apply m-0 bg-canvas font-sans text-[14px] leading-normal text-ink antialiased;
+  }
+  h1 {
+    @apply m-0 text-2xl font-semibold tracking-tight;
+  }
+  h2,
+  h3 {
+    @apply m-0 font-semibold;
+  }
+  p {
+    @apply m-0 max-w-[72ch];
+  }
+  a {
+    @apply text-pitch-700 underline decoration-1 underline-offset-2 hover:decoration-2;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-amber-500;
+  }
+  button,
+  select,
+  input[type="search"] {
+    @apply min-h-8 rounded-[2px] border border-rule-strong px-2.5 py-1 font-sans text-[13px] text-ink;
+  }
+  button,
+  select {
+    @apply cursor-pointer bg-linear-to-b from-white to-[#eceee7] shadow-[inset_0_1px_0_#fff] hover:border-ink;
+  }
+  input[type="search"] {
+    @apply bg-white shadow-[inset_1px_1px_0_rgba(0,0,0,.06)];
+  }
+  button {
+    @apply inline-flex items-center justify-center gap-1.5;
+  }
+  button:disabled {
+    @apply cursor-default opacity-50 hover:border-rule-strong;
+  }
+  button[aria-pressed="true"] {
+    @apply border-pitch-600 from-pitch-100 to-pitch-100 font-medium text-pitch-900;
+  }
+  button.primary {
+    @apply border-pitch-900 from-pitch-600 to-pitch-700 text-white shadow-[inset_0_1px_0_rgba(255,255,255,.2)];
+  }
+  label {
+    @apply flex items-center gap-1.5 text-[13px];
+  }
+  fieldset {
+    @apply m-0 grid min-w-0 gap-1.5 border-0 p-0;
+  }
+  legend,
+  .label {
+    @apply p-0 text-xs font-medium text-muted;
+  }
+  table {
+    @apply w-full border-collapse text-[13px];
+  }
+  caption {
+    @apply pb-2 text-left text-xs text-muted;
+  }
+  th,
+  td {
+    @apply border-b border-rule px-2.5 py-1.5 text-left align-top;
+  }
+  thead th {
+    @apply sticky top-0 z-[1] border-b-rule-strong bg-tile-head text-xs font-semibold whitespace-nowrap text-muted;
+  }
+  td.num,
+  th.num {
+    @apply text-right font-mono tabular-nums;
+  }
+  tbody tr:nth-child(even) {
+    @apply bg-[#f4f6f0];
+  }
+  dl {
+    @apply m-0 grid grid-cols-[minmax(0,9rem)_1fr] gap-x-3 gap-y-1 text-[13px];
+  }
+  dt {
+    @apply text-muted;
+  }
+  dd {
+    @apply m-0 min-w-0 [overflow-wrap:anywhere];
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---------- App-Rahmen ---------- */
+  .app {
+    @apply grid h-dvh grid-rows-[auto_1fr_auto] overflow-hidden;
+  }
+  .skip {
+    @apply absolute -top-24 left-3 z-[60] bg-white p-2 focus:top-2;
+  }
+  .menubar {
+    @apply flex h-11 items-center gap-4 border-b border-pitch-950 bg-pitch-900 px-4 text-white shadow-[inset_0_1px_0_rgba(255,255,255,.08)];
+  }
+  .brand {
+    @apply flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-white no-underline;
+  }
+  .brand-mark {
+    @apply relative block h-3.5 w-5 border-[1.5px] border-white/90;
+  }
+  .brand-mark::before {
+    @apply absolute inset-y-0 left-1/2 w-[1.5px] -translate-x-1/2 bg-white/90 content-[''];
+  }
+  .brand-mark::after {
+    @apply absolute top-1/2 left-1/2 size-1.5 -translate-1/2 rounded-full border-[1.5px] border-white/90 content-[''];
+  }
+  .menubar-crumb {
+    @apply hidden border-l border-white/20 pl-4 text-[13px] text-white/75 sm:block;
+  }
+  .menubar-stamp {
+    @apply ml-auto hidden font-mono text-xs text-white/70 md:block;
+  }
+  .pane-toggle {
+    @apply ml-auto border-white/40 from-white/10 to-white/5 text-white shadow-none md:ml-0 lg:hidden;
+  }
+  .workspace {
+    @apply relative grid min-h-0 grid-cols-1 lg:grid-cols-[minmax(0,1fr)_17rem];
+  }
+  .canvas {
+    @apply min-h-0 overflow-auto px-4 pt-5 pb-8 outline-none md:px-6;
+    background-image: radial-gradient(#cbd2c4 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+  .canvas-head {
+    @apply mx-auto mb-4 grid max-w-[1400px] gap-1;
+  }
+  .canvas-head .intro {
+    @apply text-[13px] text-muted;
+  }
+  .cutoff {
+    @apply order-first font-mono text-[11px] text-muted;
+  }
+  .grid {
+    @apply mx-auto grid max-w-[1400px] grid-cols-12 gap-3;
+  }
+  .skeleton,
+  .error {
+    @apply col-span-12 border border-rule bg-tile p-4 text-muted;
+  }
+  .error {
+    @apply border-[#9a4a16] bg-[#fbf0e6] text-[#9a4a16];
+  }
+
+  /* ---------- Filterbereich ---------- */
+  .pane {
+    @apply fixed inset-y-0 right-0 z-40 flex w-[min(20rem,90vw)] translate-x-full flex-col gap-5 overflow-auto border-l border-rule-strong bg-tile px-4 py-4 transition-transform lg:static lg:z-auto lg:w-auto lg:translate-x-0 lg:transition-none;
+  }
+  .pane-open .pane {
+    @apply translate-x-0 shadow-[-6px_0_0_rgba(28,35,31,.12)];
+  }
+  .pane-head {
+    @apply flex items-center justify-between border-b border-rule pb-2;
+  }
+  .pane-head h2 {
+    @apply text-[13px] tracking-wide text-muted;
+  }
+  .pane-close {
+    @apply lg:hidden;
+  }
+  .pane .filterbar {
+    @apply grid gap-4;
+  }
+  .pane .filterbar > button {
+    @apply justify-self-start;
+  }
+  .controls {
+    @apply flex flex-wrap gap-1;
+  }
+  .filter-count {
+    @apply hidden;
+  }
+  .dot {
+    @apply inline-block size-2;
+  }
+  .league-1 { background: var(--league-1); }
+  .league-2 { background: var(--league-2); }
+  .league-3 { background: var(--league-3); }
+  .league-4 { background: var(--league-4); }
+  .league-5 { background: var(--league-5); }
+  .counter {
+    @apply grid border border-rule-strong bg-pitch-950 px-3 py-2.5 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.06)];
+  }
+  .counter-value {
+    @apply font-mono text-[28px] leading-none font-medium tracking-tight text-amber-500 tabular-nums;
+  }
+  .counter-label {
+    @apply mt-1 text-xs text-white/70;
+  }
+  .crossfilter {
+    @apply grid gap-2;
+  }
+  .crossfilter h3 {
+    @apply text-xs font-medium text-muted;
+  }
+  .crossfilter > button {
+    @apply justify-self-start;
+  }
+  .chips {
+    @apply flex flex-wrap gap-1;
+  }
+  .chip {
+    @apply min-h-7 border-amber-500 from-amber-100 to-amber-100 px-2 text-xs;
+  }
+  .chip-x {
+    @apply text-[10px] text-muted;
+  }
+  .chips-empty,
+  .pane-hint,
+  .pane-meta {
+    @apply text-xs text-muted;
+  }
+  .pane-meta {
+    @apply mt-auto border-t border-rule pt-3;
+  }
+
+  /* ---------- Seitenreiter ---------- */
+  .pagetabs {
+    @apply flex h-9 items-end gap-0.5 overflow-x-auto border-t border-rule-strong bg-[#d9ddd2] px-3;
+  }
+  .pagetab {
+    @apply -mb-px shrink-0 border border-b-0 border-transparent px-3.5 py-1.5 text-[13px] whitespace-nowrap text-muted no-underline hover:bg-white/50 hover:text-ink;
+  }
+  .pagetab[aria-current] {
+    @apply border-rule-strong bg-tile font-medium text-ink shadow-[inset_0_3px_0_var(--color-pitch-600)];
+  }
+  .pagetab-minor {
+    @apply ml-auto text-xs;
+  }
+
+  /* ---------- Kacheln ---------- */
+  .tile {
+    @apply col-span-12 flex min-w-0 flex-col border border-[#b9c1b2] bg-tile shadow-[2px_2px_0_rgba(28,35,31,.07)];
+  }
+  .span-full { @apply col-span-12; }
+  .span-two-thirds { @apply col-span-12 xl:col-span-8; }
+  .span-half { @apply col-span-12 lg:col-span-6; }
+  .span-third { @apply col-span-12 md:col-span-6 xl:col-span-4; }
+  .span-quarter { @apply col-span-6 xl:col-span-3; }
+  .tile-head {
+    @apply flex min-h-8 items-center gap-3 border-b border-rule bg-linear-to-b from-[#f5f7f1] to-tile-head px-3;
+  }
+  .tile-head h2 {
+    @apply truncate text-[13px];
+  }
+  .tile-hint {
+    @apply ml-auto hidden truncate text-[11px] text-muted sm:block;
+  }
+  .tile-menu {
+    @apply relative ml-auto sm:ml-0;
+  }
+  .tile-menu-button {
+    @apply min-h-6 border-transparent from-transparent to-transparent px-1.5 py-0 text-base leading-none shadow-none hover:border-rule-strong hover:bg-white;
+  }
+  .tile-menu-list {
+    @apply absolute top-full right-0 z-30 mt-1 grid min-w-52 border border-ink bg-[#fffef7] py-1 shadow-[3px_3px_0_rgba(28,35,31,.18)];
+  }
+  .tile-menu-list[hidden],
+  .tile-menu-list button[hidden] {
+    @apply hidden;
+  }
+  .tile-menu-list button {
+    @apply min-h-7 justify-start rounded-none border-0 from-transparent to-transparent px-3 text-left shadow-none hover:bg-pitch-100;
+  }
+  .tile-body {
+    @apply grid min-w-0 flex-1 content-start gap-3 p-3;
+  }
+  .tile-chart {
+    @apply w-full min-w-0;
+  }
+  .tile-chart[hidden],
+  .tile-table[hidden] {
+    @apply hidden;
+  }
+  .tile-table {
+    @apply max-h-[420px] overflow-auto;
+  }
+  .tile-foot {
+    @apply border-t border-dashed border-rule px-3 py-1.5 text-[11px] text-muted;
+  }
+  .tile-foot[hidden] {
+    @apply hidden;
+  }
+  .tile.is-focus {
+    @apply fixed inset-4 z-50 shadow-[0_0_0_100vmax_rgba(28,35,31,.45)] md:inset-10;
+  }
+  .tile.is-focus .tile-chart {
+    height: calc(100dvh - 9rem) !important;
+  }
+  .tile.is-focus .tile-table {
+    @apply max-h-[calc(100dvh-9rem)];
+  }
+  .has-focus {
+    @apply overflow-hidden;
+  }
+
+  /* ---------- Kennzahlen ---------- */
+  .kpis {
+    @apply col-span-12 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6;
+  }
+  .kpi {
+    @apply grid gap-0.5 border border-[#b9c1b2] border-t-[3px] border-t-pitch-600 bg-tile px-3 py-2.5 shadow-[2px_2px_0_rgba(28,35,31,.07)];
+  }
+  .kpi-label {
+    @apply text-xs text-muted;
+  }
+  .kpi-value {
+    @apply font-mono text-[26px] leading-tight font-medium tracking-tight tabular-nums;
+  }
+  .kpi-sub {
+    @apply min-h-4 font-mono text-[11px] text-muted;
+  }
+
+  /* ---------- Daten-Explorer ---------- */
+  .table-wrap {
+    @apply max-w-full overflow-x-auto;
+  }
+  .explorer-table {
+    @apply max-h-[560px] overflow-auto border border-rule;
+  }
+  .toolbar {
+    @apply flex flex-wrap items-center gap-2;
+  }
+  .toolbar .search {
+    @apply w-56 max-w-full;
+  }
+  .toolbar-info {
+    @apply ml-auto font-mono text-xs text-muted;
+  }
+  .columns-menu {
+    @apply relative;
+  }
+  .columns-menu > summary {
+    @apply flex min-h-8 cursor-pointer list-none items-center rounded-[2px] border border-rule-strong bg-linear-to-b from-white to-[#eceee7] px-2.5 text-[13px] hover:border-ink;
+  }
+  .columns-menu > summary::after {
+    @apply ml-1.5 text-[10px] content-['▾'];
+  }
+  .columns-list {
+    @apply absolute top-full left-0 z-30 mt-1 grid max-h-80 w-56 gap-1 overflow-auto border border-ink bg-[#fffef7] p-2 shadow-[3px_3px_0_rgba(28,35,31,.18)];
+  }
+  th .sort {
+    @apply min-h-0 border-0 from-transparent to-transparent p-0 text-xs font-semibold text-muted shadow-none hover:text-ink;
+  }
+  th .sort[data-dir]::after {
+    @apply ml-1 text-pitch-600 content-[attr(data-dir)];
+  }
+  th.num .sort {
+    @apply w-full justify-end;
+  }
+  tr.clickable {
+    @apply cursor-pointer hover:bg-amber-100 focus-visible:bg-amber-100;
+  }
+  td.empty {
+    @apply py-6 text-center text-muted;
+  }
+  .pager {
+    @apply flex items-center gap-1;
+  }
+  .pager-info {
+    @apply px-2 font-mono text-xs text-muted;
+  }
+  .drawer {
+    @apply fixed top-11 right-0 bottom-0 z-50 grid w-[min(30rem,100vw)] content-start gap-4 overflow-auto border-l border-ink bg-tile p-4 shadow-[-6px_0_0_rgba(28,35,31,.15)];
+  }
+  .drawer[hidden] {
+    @apply hidden;
+  }
+  .drawer-head {
+    @apply flex items-start justify-between gap-3;
+  }
+  .drawer-head h2 {
+    @apply text-base;
+  }
+  .drawer-sub {
+    @apply -mt-2 font-mono text-xs text-muted;
+  }
+  .detail-group {
+    @apply grid gap-2 border border-rule bg-white p-3;
+  }
+  .detail-group h3 {
+    @apply flex items-center justify-between text-[13px];
+  }
+  .source-badge {
+    @apply border px-1.5 py-px font-mono text-[10px] font-normal;
+  }
+  .source-understat { @apply border-[#3d5f95] text-[#3d5f95]; }
+  .source-wikidata { @apply border-[#8a3b33] text-[#8a3b33]; }
+  .source-openmeteo { @apply border-pitch-600 text-pitch-700; }
+  .source-berechnet { @apply border-dashed border-muted text-muted; }
+  .drawer-actions {
+    @apply flex flex-wrap gap-2;
+  }
+  .profile {
+    @apply grid gap-2;
+  }
+  .profile h3 {
+    @apply text-[15px];
+  }
+  .team-pick {
+    @apply w-full;
+  }
+  .muted {
+    @apply text-[13px] text-muted;
+  }
+  .links {
+    @apply flex flex-wrap gap-x-4 gap-y-1 text-[13px];
+  }
+  .status-inner {
+    @apply grid gap-2 text-[13px];
+  }
+  .status-inner button {
+    @apply justify-self-start;
+  }
+  .derived-box dl {
+    @apply grid-cols-1 gap-y-0.5;
+  }
+  .derived-box dt {
+    @apply mt-2 font-medium text-ink;
+  }
+  .derived-box dd {
+    @apply text-muted;
+  }
+  .origin-box {
+    @apply border-l-4 border-l-amber-500;
+  }
+  .origin-box .tile-body > p {
+    @apply max-w-[80ch];
+  }
+  .chart-workshop {
+    @apply grid gap-4;
+  }
+  .chart svg text {
+    fill: var(--color-muted);
+  }
+}
+
+.workspace.without-pane { grid-template-columns: minmax(0, 1fr); }
+.tab-group { font-size: 10px; padding: 0 8px; align-self: center; white-space: nowrap; text-transform: none; }
+.source-flow { display: flex; align-items: center; gap: 12px; }
+.flow-sources { display: grid; gap: 8px; flex: 1; }
+.flow-box { padding: 12px; border: 1px solid #aeb7a8; background: #f3f3e9; flex: 1; }
+.flow-arrow { color: #68735e; }
+.raw-response { max-height: 350px; overflow: auto; font-size: 11px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.tile-body dd { overflow-wrap: anywhere; }
+.selected-row { background: #f3e1a6; }
+@media (max-width: 699px) { .source-flow { flex-direction: column; align-items: stretch; } .flow-arrow { transform: rotate(90deg); align-self: center; } }
+
+@layer components {
+  .canvas-head > .source-badge {
+    @apply justify-self-start;
+  }
+}
