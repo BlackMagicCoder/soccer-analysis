@@ -1,0 +1,169 @@
+team,league_id,venue,city,lat,lon,wikidata
+Arsenal,1,Emirates Stadium,Groß-London,51.555,-0.1083333333333333,Q163995
+Aston Villa,1,Villa Park,Birmingham,52.509166666667,-1.8847222222222,Q175339
+Bournemouth,1,Dean Court,Bournemouth,50.735278,-1.838333,Q619094
+Brentford,1,Griffin Park,Groß-London,51.488167,-0.302639,Q1546623
+Brighton,1,Brighton Community Stadium,Brighton,50.861822222222,-0.083277777777778,Q619409
+Burnley,1,Turf Moor,Burnley,53.789064,-2.230225,Q683112
+Cardiff,1,Cardiff City Stadium,Cardiff,51.472778,-3.203056,Q867902
+Chelsea,1,Stamford Bridge,Groß-London,51.481666666667,-0.19111111111111,Q171458
+Crystal Palace,1,Selhurst Park,Groß-London,51.398333333333,-0.085555555555556,Q1066373
+Everton,1,Everton Stadium,Liverpool,53.425,-3.0027777777777778,Q29347805
+Fulham,1,Craven Cottage,Groß-London,51.475,-0.22166666666667,Q318043
+Huddersfield,1,John Smith’s Stadium,Kirklees,53.654166666667,-1.7683333333333,Q619407
+Hull,1,MKM Stadium,Hull,53.746111111111,-0.36777777777778,Q630160
+Ipswich,1,Portman Road,Ipswich,52.055,1.1452777777777778,Q619558
+Leeds,1,Elland Road,Leeds,53.777777777778,-1.5722222222222,Q619505
+Leicester,1,Leicester City Stadium,Leicester,52.620277777778,-1.1422222222222,Q620031
+Liverpool,1,Anfield,Liverpool,53.43083333333333,-2.960833333333333,Q45671
+Luton,1,Kenilworth Road Stadium,Luton,51.884166666667,-0.43166666666667,Q1613767
+Manchester City,1,City of Manchester Stadium,Manchester,53.483055555556,-2.2002777777778,Q48159
+Manchester United,1,Old Trafford,Trafford,53.463055555556,-2.2913888888889,Q83457
+Middlesbrough,1,Riverside Stadium,Middlesbrough,54.578333333333,-1.2169444444444,Q822886
+Newcastle United,1,St James' Park,Newcastle upon Tyne,54.975555555556,-1.6216666666667,Q191774
+Norwich,1,Carrow Road,Norwich,52.62222222222222,1.3091666666666666,Q123017
+Nottingham Forest,1,City Ground,Rushcliffe,52.94,-1.132778,Q593446
+Queens Park Rangers,1,Loftus Road,Groß-London,51.509166666667,-0.23222222222222,Q31670
+Sheffield United,1,Bramall Lane,Sheffield,53.370277777778,-1.4708333333333,Q897533
+Southampton,1,St. Mary’s Stadium,Southampton,50.90583333,-1.39111111,Q567339
+Stoke,1,Britannia Stadium,Stoke-on-Trent,52.988333333333,-2.1755555555556,Q500922
+Sunderland,1,Stadium of Light,Sunderland,54.91442906893247,-1.388172971350196,Q31969
+Swansea,1,Liberty Stadium,Swansea,51.6422,-3.9351,Q580480
+Tottenham,1,Tottenham Hotspur Stadium,Groß-London,51.604444444444,-0.066388888888889,Q55074091
+Watford,1,Vicarage Road,Watford,51.649928,-0.401606,Q10626
+West Bromwich Albion,1,The Hawthorns,Sandwell,52.509166666667,-1.9638888888889,Q31678
+West Ham,1,Londoner Stadion,Groß-London,51.538611111111,-0.016388888888889,Q172190
+Wolverhampton Wanderers,1,Molineux Stadium,Wolverhampton,52.590277777778,-2.1302777777778,Q380823
+AC Milan,2,Stadio Giuseppe Meazza,Mailand,45.47805555555556,9.123888888888889,Q133566
+Atalanta,2,Stadio Atleti Azzurri d’Italia,Bergamo,45.708889,9.680833,Q780526
+Benevento,2,Stadio Ciro Vigorito,Benevent,41.116389,14.781111,Q1671970
+Bologna,2,Stadio Renato Dall’Ara,Bologna,44.4922,11.3098,Q757182
+Brescia,2,Stadio Mario Rigamonti,Brescia,45.570556,10.236944,Q94946
+Cagliari,2,Unipol Domus,Cagliari,39.19969444444445,9.137416666666669,Q30880646
+Carpi,2,Stadio Alberto Braglia,Modena,44.653611,10.923333,Q94646
+Cesena,2,Stadio Dino Manuzzi,Cesena,44.140556,12.261944,Q94625
+Chievo,2,Stadio Marcantonio Bentegodi,Verona,45.435356,10.968647,Q737093
+Como,2,Stadio Giuseppe Sinigaglia,Como,45.81388889,9.07222222,Q115372
+Cremonese,2,Stadio Giovanni Zini,Cremona,45.140278,10.034722,Q245799
+Crotone,2,Stadio Ezio Scida,Crotone,39.079167,17.116667,Q115554
+Empoli,2,Stadio Carlo Castellani,Empoli,43.726389,10.955,Q94633
+Fiorentina,2,Stadio Artemio Franchi,Florenz,43.780822,11.282258,Q270474
+Frosinone,2,Benito-Stirpe-Stadion,Frosinone,41.63426,13.321866,Q29655396
+Genoa,2,Stadio Luigi Ferraris,Genua,44.416431,8.952428,Q271568
+Inter,2,Stadio Giuseppe Meazza,Mailand,45.47805555555556,9.123888888888889,Q133566
+Juventus,2,Juventus Stadium,Turin,45.109594,7.641247,Q62149
+Lazio,2,Olympiastadion Rom,Rom,41.93388888888889,12.454722222222223,Q159884
+Lecce,2,Stadio Via del Mare,Lecce,40.365278,18.208889,Q684727
+Monza,2,Stadio Brianteo,Monza,45.582778,9.308056,Q1851616
+Napoli,2,Stadio Diego Armando Maradona,Neapel,40.827967,14.193008,Q82709
+Palermo,2,Stadio Renzo Barbera,Palermo,38.152767,13.342275,Q28500
+Parma,2,Stadio Ennio Tardini,Parma,44.794916666667,10.338444444444,Q610546
+Parma Calcio 1913,2,Stadio Ennio Tardini,Parma,44.794916666667,10.338444444444,Q610546
+Pescara,2,Stadio Adriatico,Pescara,42.45527778,14.22944444,Q1509993
+Pisa,2,Stadio Arena Garibaldi - Romeo Anconetani,Pisa,43.725278,10.4,Q115970
+Roma,2,Olympiastadion Rom,Rom,41.93388888888889,12.454722222222223,Q159884
+SPAL 2013,2,Stadio Paolo Mazza,Ferrara,44.839722,11.6075,Q1575161
+Salernitana,2,Stadio Arechi,Salerno,40.645,14.823889,Q2300150
+Sampdoria,2,Stadio Luigi Ferraris,Genua,44.416431,8.952428,Q271568
+Sassuolo,2,Mapei Stadium – Città del Tricolore,Reggio Emilia,44.714722,10.649722,Q1887221
+Spezia,2,Stadio Alberto Picco,La Spezia,44.102222,9.808611,Q115586
+Torino,2,Olympiastadion Turin,Turin,45.041667,7.65,Q214629
+Udinese,2,Stadio Friuli,Udine,46.081603,13.200136,Q640031
+Venezia,2,Stadio Pierluigi Penzo,Venedig,45.427761,12.363731,Q588926
+Verona,2,Stadio Marcantonio Bentegodi,Verona,45.435356,10.968647,Q737093
+Arminia Bielefeld,3,SchücoArena,Bielefeld,52.031389,8.516944,Q706435
+Augsburg,3,WWK ARENA,Augsburg,48.3233205,10.8859261,Q167418
+Bayer Leverkusen,3,BayArena,Leverkusen,51.038255555556,7.0022055555556,Q156630
+Bayern Munich,3,Allianz-Arena,München,48.218775,11.624752777778,Q127429
+Bochum,3,Ruhrstadion,Bochum,51.489944,7.236489,Q373769
+Borussia Dortmund,3,Signal Iduna Park,Dortmund,51.4925,7.451667,Q150928
+Borussia M.Gladbach,3,ista-Borussia-Park,Mönchengladbach,51.174583333333,6.3854638888889,Q154074
+Darmstadt,3,Stadion am Böllenfalltor,Darmstadt,49.857778,8.672222,Q878622
+Eintracht Frankfurt,3,Deutsche Bank Park,Frankfurt am Main,50.068611,8.645278,Q157273
+FC Cologne,3,RheinEnergieStadion,Köln,50.933611,6.875,Q151893
+FC Heidenheim,3,Voith-Arena,Heidenheim an der Brenz,48.6685,10.1393,Q548138
+Fortuna Duesseldorf,3,Merkur Spiel-Arena,Düsseldorf,51.261539,6.733083,Q155351
+Freiburg,3,Dreisamstadion,Freiburg im Breisgau,47.988889,7.893056,Q311458
+Greuther Fuerth,3,Sportpark Ronhof,Fürth,49.486944,10.999167,Q684301
+Hamburger SV,3,Volksparkstadion,Hamburg,53.586944,9.898611,Q150933
+Hannover 96,3,Heinz-von-Heiden-Arena,Hannover,52.36,9.731111,Q152633
+Hertha Berlin,3,Olympiastadion Berlin,Berlin,52.514722222222,13.239444444444,Q151374
+Hoffenheim,3,SNP Arena,Sinsheim,49.239,8.888278,Q129870
+Holstein Kiel,3,Holstein-Stadion,Kiel,54.349167,10.123611,Q872915
+Ingolstadt,3,Audi-Sportpark,Ingolstadt,48.745555555556,11.485,Q479619
+Mainz 05,3,Mewa Arena,Mainz,49.984167,8.224167,Q392494
+Nuernberg,3,Max-Morlock-Stadion,Nürnberg,49.4262406248896,11.1256170091463,Q152599
+Paderborn,3,Home-Deluxe-Arena,Paderborn,51.731389,8.710833,Q567402
+RasenBallsport Leipzig,3,Red Bull Arena,Leipzig,51.345833,12.348056,Q210466
+Schalke 04,3,Veltins-Arena,Gelsenkirchen,51.554502777778,7.0675888888889,Q150961
+St. Pauli,3,Millerntor-Stadion,Hamburg,53.554444,9.967778,Q339572
+Union Berlin,3,Stadion An der Alten Försterei,Berlin,52.457222,13.568056,Q749172
+VfB Stuttgart,3,MHPArena,Stuttgart,48.792222,9.231944,Q152349
+Werder Bremen,3,Weserstadion,Bremen,53.066389,8.8375,Q154475
+Wolfsburg,3,Volkswagen Arena,Wolfsburg,52.431944,10.803889,Q155603
+Alaves,4,Estadio Mendizorrotza,Vitoria-Gasteiz,42.837111,-2.688044,Q1369390
+Almeria,4,Estadio Municipal Juan Rojas,Almería,36.862,-2.44529,Q3773347
+Athletic Club,4,San Mamés,Bilbao,43.264205,-2.949369,Q182864
+Atletico Madrid,4,Estadio Metropolitano,Madrid,40.436111,-3.599444,Q1369687
+Barcelona,4,Camp Nou,Barcelona,41.380833333333335,2.122777777777778,Q159848
+Cadiz,4,Stadion Ramón de Carranza,Cádiz,36.502778,-6.273056,Q2301915
+Celta Vigo,4,Estadio Balaídos,Vigo,42.211861,-8.740328,Q1326578
+Cordoba,4,Estadio Nuevo Arcángel,Córdoba,37.872294,-4.764642,Q121879
+Deportivo La Coruna,4,Estadio Riazor,A Coruña,43.368667,-8.417372,Q22130
+Eibar,4,Estadio Municipal de Ipurua,Eibar,43.181706,-2.475803,Q3320428
+Elche,4,Estadio Manuel Martínez Valero,Elx / Elche,38.266944,-0.663333,Q953600
+Espanyol,4,Stage Front Stadium,el Prat de Llobregat,41.347861,2.075667,Q473223
+Getafe,4,Coliseum Alfonso Pérez,Getafe,40.325556,-3.714722,Q929109
+Girona,4,Estadi Municipal de Montilivi,Girona,41.961389,2.828611,Q2097709
+Granada,4,Estadio Nuevo Los Cármenes,Granada,37.152967,-3.595736,Q574565
+Las Palmas,4,Estadio de Gran Canaria,Las Palmas de Gran Canaria,28.1,-15.456667,Q991419
+Leganes,4,Estadio Municipal de Butarque,Leganés,40.3404,-3.7607,Q1369462
+Levante,4,Estadio Ciudad de Valencia,Valencia,39.494722,-0.364167,Q1122715
+Malaga,4,Estadio La Rosaleda,Málaga,36.734092,-4.426422,Q695879
+Mallorca,4,Estadi Mallorca Son Moix,Palma,39.59,2.63,Q276163
+Osasuna,4,Estadio El Sadar,Pamplona / Iruña,42.796667,-1.636944,Q735783
+Rayo Vallecano,4,Campo de Fútbol de Vallecas,Madrid,40.391944,-3.658961,Q983806
+Real Betis,4,Estadio Benito Villamarín,Sevilla,37.356403,-5.981611,Q126844
+Real Madrid,4,Bernabéu,Madrid,40.45306,-3.68835,Q164027
+Real Oviedo,4,Estadio Nuevo Carlos Tartiere,Oviedo,43.360783,-5.870222,Q1369536
+Real Sociedad,4,Estadio Anoeta,Donostia / San Sebastián,43.301378,-1.973617,Q917845
+Real Valladolid,4,Nuevo Estadio Municipal José Zorrilla,Valladolid,41.644444,-4.761111,Q151816
+SD Huesca,4,Estadio El Alcoraz,Huesca/Uesca,42.131944,-0.424444,Q1369197
+Sevilla,4,Estadio Ramón Sánchez Pizjuán,Sevilla,37.383878,-5.970467,Q275429
+Sporting Gijon,4,El Molinón,Gijón,43.536111,-5.637222,Q929315
+Valencia,4,Estadio Mestalla,Valencia,39.474722,-0.358333,Q202762
+Villarreal,4,Estadio de la Cerámica,Vila-real,39.944167,-0.103611,Q741157
+Ajaccio,5,Stade François-Coty,Ajaccio,41.93157,8.77887,Q1807356
+Amiens,5,Stade de la Licorne,Amiens,49.89422,2.2633,Q1568249
+Angers,5,Stade Raymond-Kopa,Angers,47.45905,-0.53163,Q387213
+Auxerre,5,Stade de l’Abbé-Deschamps,Auxerre,47.78672,3.58871,Q1347183
+Bordeaux,5,Stade Atlantique,Bordeaux,44.89735,-0.56128,Q252481
+Brest,5,Stade Francis-Le Blé,Brest,48.40293,-4.46148,Q1432517
+Caen,5,Stade Michel-d’Ornano,Caen,49.17956,-0.39667,Q1417171
+Clermont Foot,5,Stade Gabriel Montpied,Clermont-Ferrand,45.81584,3.12162,Q1128263
+Dijon,5,Stade Gaston Gérard,Dijon,47.3261,5.06793,Q1848312
+Evian Thonon Gaillard,5,Parc des Sports d’Annecy,Annecy,45.91722,6.11972,Q428115
+GFC Ajaccio,5,Stade Ange Casanova,Ajaccio,41.95138,8.77204,Q1134861
+Guingamp,5,Stade du Roudourou,Guingamp,48.56516,-3.16552,Q1817621
+Le Havre,5,Stade Océane,Le Havre,49.4988,0.1697,Q219462
+Lens,5,Stade Bollaert-Delelis,Lens,50.4329,2.81491,Q854122
+Lille,5,Stade Pierre-Mauroy,Villeneuve-d'Ascq,50.611962,3.130631,Q1410402
+Lorient,5,Stade du Moustoir,Lorient,47.74869,-3.36929,Q39189
+Lyon,5,Parc Olympique lyonnais,Décines-Charpieu,45.765224,4.982131,Q8507
+Marseille,5,Stade Vélodrome,Marseille,43.269241,5.394907,Q202150
+Metz,5,Stade Saint-Symphorien,Longeville-lès-Metz,49.109945,6.159532,Q1483409
+Monaco,5,Stade Louis II,Monaco,43.727778,7.415556,Q318851
+Montpellier,5,Stade de la Mosson,Montpellier,43.62061,3.81279,Q815833
+Nancy,5,Stade Marcel-Picot,Tomblaine,48.696,6.21222,Q1341607
+Nantes,5,Stade Louis-Fonteneau,Nantes,47.2561,-1.52466,Q1053455
+Nice,5,Stade de Nice,Nizza,43.70513,7.19262,Q127372
+Nimes,5,Stade des Costières,Nîmes,43.81602,4.35928,Q1128628
+Paris FC,5,Stade Charléty,Paris,48.81716,2.34511,Q541391
+Paris Saint Germain,5,Parc des Princes,Paris,48.84145,2.25305,Q193431
+Reims,5,Stade Auguste-Delaune,Reims,49.24716,4.02478,Q530735
+Rennes,5,Roazhon Park,Rennes,48.10743,-1.71282,Q1121760
+SC Bastia,5,Stade Armand Cesari,Furiani,42.65196,9.44303,Q1434942
+Saint-Etienne,5,Stade Geoffroy-Guichard,Saint-Étienne,45.460749,4.390171,Q861000
+Strasbourg,5,Meinau-Stadion,Straßburg,48.55942,7.75738,Q374883
+Toulouse,5,Stadium Municipal,Toulouse,43.583296,1.434055,Q738044
+Troyes,5,Stade de l’Aube,Troyes,48.30616,4.0982,Q2001732
