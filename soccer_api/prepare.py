@@ -6,6 +6,9 @@ from contextlib import closing
 import numpy as np
 import pandas as pd
 
+from soccer_api.seed import NUMBERS
+from soccer_api.policy import bounded
+
 LEAGUES = {1: "EPL", 2: "Serie A", 3: "Bundesliga", 4: "La Liga", 5: "Ligue 1"}
 TBINS = ["a_≤150", "b_150-300", "c_300-500", "d_500-800", "e_>800"]
 
@@ -41,7 +44,9 @@ def team_seasons(df):
 
 
 def prepare(df):
-    df = df.copy()
+    df = bounded(df)
+    for column in NUMBERS:
+        df[column] = pd.to_numeric(df[column], errors="coerce")
     df["date"] = pd.to_datetime(df.date)
     df["league"] = pd.to_numeric(df.league_id).map(LEAGUES)
     df["res"] = np.select([df.home_goals > df.away_goals, df.home_goals < df.away_goals], ["H", "A"], "D")
@@ -58,13 +63,14 @@ def prepare(df):
     ).index.map(strength)
     df["trav100"] = df.travel_km / 100
     df["wind10"] = df.w_wind / 10
-    for name, condition in {
-        "rain": df.w_precip_2h > 0.5,
-        "cold": df.w_temp <= 2,
-        "hot": df.w_temp > 25,
-        "midweek": df.date.dt.day_of_week.isin([1, 2, 3]),
+    for name, (condition, source) in {
+        "rain": (df.w_precip_2h > 0.5, df.w_precip_2h),
+        "cold": (df.w_temp <= 2, df.w_temp),
+        "hot": (df.w_temp > 25, df.w_temp),
+        "midweek": (df.date.dt.day_of_week.isin([1, 2, 3]), df.date),
     }.items():
-        df[name] = condition.astype(int)
+        # Missing source weather is unknown, not evidence of dry or moderate conditions.
+        df[name] = condition.astype(int).where(source.notna(), np.nan)
     df["tdabs"] = df.w_temp_diff_away.abs()
     df["tbin"] = pd.cut(df.travel_km, [-1, 150, 300, 500, 800, 3000], labels=TBINS)
     return df

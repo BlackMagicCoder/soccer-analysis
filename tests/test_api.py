@@ -117,9 +117,11 @@ def test_models(client):
     b = client.get("/api/models?leagues=1,3&ghost=include")
     assert a.headers["etag"] == b.headers["etag"]
     empty = client.get("/api/models?season_from=2100").json()
-    # An inverted default range is rejected; an explicit empty range yields model errors.
+    # Future seasons are outside the fixed analysis policy, even with an explicit range.
     assert "detail" in empty
     empty = client.get("/api/models?season_from=2100&season_to=2101")
+    assert empty.status_code == 422
+    empty = client.get("/api/models?season_from=2023&season_to=2024")
     assert empty.status_code == 200
     assert empty.json()["n"] == 0 and not empty.json()["models"]
 

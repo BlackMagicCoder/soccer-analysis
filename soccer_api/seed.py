@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 from soccer_api.db import connect, data_dir, quote
+from soccer_api.policy import bounded
 
 SIDE_NUMBERS = "goals points xg np_xg np_xg_difference expected_points ppda deep_completions lat lon".split()
 NUMBERS = [f"{side}_{c}" for side in ("home", "away") for c in SIDE_NUMBERS]
@@ -36,6 +37,7 @@ def seed(path=None):
             raise ValueError("game_id muss eindeutig und vollständig sein.")
         for col in NUMBERS:
             frame[col] = pd.to_numeric(frame[col], errors="coerce")
+        frame = bounded(frame)
         frame["date"] = pd.to_datetime(frame.date, errors="raise").map(lambda d: d.isoformat())
         frame["league_id"] = frame.league_id.astype(str)
         frame["source"] = "seed"
@@ -68,7 +70,7 @@ def seed(path=None):
             "(team TEXT PRIMARY KEY, venue TEXT, city TEXT, lat REAL, lon REAL, league_id TEXT)"
         )
         con.execute("DELETE FROM stadiums")
-        all_matches = pd.read_sql_query("SELECT * FROM matches ORDER BY date, game_id", con)
+        all_matches = bounded(pd.read_sql_query("SELECT * FROM matches ORDER BY date, game_id", con))
         for team, group in all_matches.groupby("home_team", sort=True):
             row = group.iloc[-1]
             appearances = all_matches.loc[(all_matches.home_team == team) | (all_matches.away_team == team)]
